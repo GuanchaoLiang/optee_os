@@ -342,3 +342,8 @@ TEE_Result TEE_CacheInvalidate(char *buf, size_t len)
 {
 	return utee_cache_operation(buf, len, TEE_CACHEINVALIDATE);
 }
+
+TEE_Result TEE_AgentCall(unsigned int agent_id, void *buf, size_t len)
+{
+	return utee_agent_call(agent_id, buf, len);
+}

@@ -47,6 +47,7 @@
 #include <util.h>
 
 #include "arch_svc_private.h"
+#include "svc_agent.h"
 
 #if (TRACE_LEVEL == TRACE_FLOW) && defined(CFG_TEE_CORE_TA_TRACE)
 #define TRACE_SYSCALLS
@@ -140,6 +141,7 @@ static const struct syscall_entry tee_svc_syscall_table[] = {
 	SYSCALL_ENTRY(syscall_se_channel_transmit),
 	SYSCALL_ENTRY(syscall_se_channel_close),
 	SYSCALL_ENTRY(syscall_cache_operation),
+	SYSCALL_ENTRY(syscall_agent_call),
 };
 
 #ifdef TRACE_SYSCALLS

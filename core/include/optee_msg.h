@@ -440,4 +440,16 @@ struct optee_msg_arg {
  */
 #define OPTEE_MSG_RPC_CMD_BENCH_REG	20
 
+/*
+ * user defined Agentcall from TEE to REE
+ *
+ * [in]  param[0].u.value.a		cmd id of the agentcall
+ *
+ * [out] param[0].u.tmem.buf_ptr	physical address of the agentcall buffer
+ * [out] param[0].u.tmem.size		size of the agentcall buffer
+ * [out] param[0].u.tmem.shm_ref	shared memory reference of the agent
+ *					call buffer
+ */
+#define OPTEE_MSG_RPC_CMD_AGENT		8
+
 #endif /* _OPTEE_MSG_H */

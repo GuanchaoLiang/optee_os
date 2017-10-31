@@ -300,4 +300,6 @@ TEE_Result utee_cache_operation(void *va, size_t l, unsigned long op);
 
 TEE_Result utee_gprof_send(void *buf, size_t size, uint32_t *id);
 
+TEE_Result utee_agent_call(unsigned int agent_id, void *va, size_t len);
+
 #endif /* UTEE_SYSCALLS_H */

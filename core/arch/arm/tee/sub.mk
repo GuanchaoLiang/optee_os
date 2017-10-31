@@ -11,3 +11,4 @@ srcs-y += entry_std.c
 srcs-y += entry_fast.c
 srcs-y += init.c
 srcs-y += cache.c
+srcs-y += svc_agent.c

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, STMicroelectronics International N.V.
+ * Copyright (c) 2016, Hisilicon Limited
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,38 +24,18 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef SVC_AGENT_CALL_H
+#define SVC_AGENT_CALL_H
 
-#ifndef TEE_INTERNAL_API_EXTENSIONS_H
-#define TEE_INTERNAL_API_EXTENSIONS_H
-
-/* trace support */
-#include <trace.h>
-#include <stdio.h>
-#include <tee_api_defines_extensions.h>
+#include <types_ext.h>
 #include <tee_api_types.h>
 
-void tee_user_mem_mark_heap(void);
-size_t tee_user_mem_check_heap(void);
-/* Hint implementation defines */
-#define TEE_USER_MEM_HINT_NO_FILL_ZERO       0x80000000
+TEE_Result tee_agent_call(unsigned int agent_id, void *kva, size_t len);
 
-/*
- * Cache maintenance support (TA requires the CACHE_MAINTENANCE property)
- *
- * TEE_CacheClean() Write back to memory any dirty data cache lines. The line
- *                  is marked as not dirty. The valid bit is unchanged.
- *
- * TEE_CacheFlush() Purges any valid data cache lines. Any dirty cache lines
- *                  are first written back to memory, then the cache line is
- *                  invalidated.
- *
- * TEE_CacheInvalidate() Invalidate any valid data cache lines. Any dirty line
- *                       are not written back to memory.
- */
-TEE_Result TEE_CacheClean(char *buf, size_t len);
-TEE_Result TEE_CacheFlush(char *buf, size_t len);
-TEE_Result TEE_CacheInvalidate(char *buf, size_t len);
-
-TEE_Result TEE_AgentCall(unsigned int agent_id, void *buf, size_t len);
-
+#ifdef CFG_WITH_USER_TA
+TEE_Result syscall_agent_call(unsigned int agent_id, void *uva, size_t len);
+#else
+#define syscall_agent_call	syscall_not_supported
 #endif
+
+#endif /*SVC_CACHE_H*/
