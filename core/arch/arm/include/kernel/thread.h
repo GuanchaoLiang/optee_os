@@ -601,6 +601,24 @@ struct mobj *thread_rpc_alloc_payload(size_t size, uint64_t *cookie);
 void thread_rpc_free_payload(uint64_t cookie, struct mobj *mobj);
 
 /**
+ * Allocates data for payload buffers shared with non-secure kernel.
+ *
+ * @size:	size in bytes of payload buffer
+ * @cookie:	returned cookie used when freeing the buffer
+ *
+ * @returns	mobj that describes allocated buffer or NULL on error
+ */
+struct mobj *thread_rpc_alloc_kern_payload(size_t size, uint64_t *cookie);
+
+/**
+ * Free physical memory previously allocated with thread_rpc_alloc_kern_payload()
+ *
+ * @cookie:	cookie received when allocating the buffer
+ * @mobj:	mobj that describes the buffer
+ */
+void thread_rpc_free_kern_payload(uint64_t cookie, struct mobj *mobj);
+
+/**
  * Does an RPC using a preallocated argument buffer
  * @cmd: RPC cmd
  * @num_params: number of parameters (max 2)
